@@ -1,5 +1,13 @@
 # PythonAPI
 
+https://realpython.com/api-integration-in-python/#rest-and-python-building-apis
+
+https://docs.python-requests.org/en/latest/user/quickstart/#make-a-request
+
+https://pypi.org/project/Flask-Cors/
+
+https://pythonbasics.org/flask-rest-api/
+
 https://www.analyticsvidhya.com/blog/2022/01/rest-api-with-python-and-flask/
 
 https://www.kindsonthegenius.com/how-to-create-an-api-in-python-with-flask-step-by-step/
