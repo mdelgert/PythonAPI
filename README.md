@@ -23,3 +23,9 @@ pip install flask-restful
 pip install flask-cors
 
 python demo1.py
+
+# Twisted links
+https://www.quora.com/What-is-the-best-tutorial-for-Pythons-Twisted-framework
+http://krondo.com/blog/?page_id=1327
+http://jcalderone.livejournal.com/47954.html
+http://oubiwann.blogspot.com/2008/06/async-batching-with-twisted-walkthrough.html
