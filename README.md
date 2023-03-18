@@ -16,6 +16,8 @@ https://www.kindsonthegenius.com/how-to-create-an-api-in-python-with-flask-step-
 
 https://www.section.io/engineering-education/flask-database-integration-with-sqlalchemy/
 
+https://github.com/corpsgeek/flask-form-handling/tree/main/app
+
 https://levelup.gitconnected.com/full-stack-web-app-with-python-react-and-bootstrap-backend-8592baa6e4eb
 
 https://github.com/effiongcharles/full_stack_web_python_flask_react_bootstrap
