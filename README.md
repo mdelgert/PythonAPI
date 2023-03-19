@@ -14,6 +14,8 @@ https://www.analyticsvidhya.com/blog/2022/01/rest-api-with-python-and-flask/
 
 https://www.kindsonthegenius.com/how-to-create-an-api-in-python-with-flask-step-by-step/
 
+https://github.com/jpwhite3/northwind-SQLite3
+
 https://www.section.io/engineering-education/flask-database-integration-with-sqlalchemy/
 
 https://github.com/corpsgeek/flask-form-handling/tree/main/app
