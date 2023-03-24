@@ -1,46 +1,51 @@
 #https://pythonbasics.org/flask-sqlalchemy/
+#https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
+#https://realpython.com/python-sqlite-sqlalchemy/#example-program
+#https://hackersandslackers.com/python-database-management-sqlalchemy/
+#https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
 
-from flask import Flask, request, flash, url_for, redirect, render_template
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.sqlite3'
-app.config['SECRET_KEY'] = "random string"
+# create a database engine
+engine = create_engine('sqlite:///test.db', echo=True)
 
-db = SQLAlchemy(app)
+# create a Session class to interact with the database
+Session = sessionmaker(bind=engine)
 
-class students(db.Model):
-   id = db.Column('student_id', db.Integer, primary_key = True)
-   name = db.Column(db.String(100))
-   city = db.Column(db.String(50))
-   addr = db.Column(db.String(200)) 
-   pin = db.Column(db.String(10))
+# create a base class for declarative models
+Base = declarative_base()
 
-def __init__(self, name, city, addr,pin):
-   self.name = name
-   self.city = city
-   self.addr = addr
-   self.pin = pin
+# define a model for the "users" table
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
 
-@app.route('/')
-def show_all():
-   return render_template('show_all.html', students = students.query.all() )
+# create the table in the database
+Base.metadata.create_all(engine)
 
-@app.route('/new', methods = ['GET', 'POST'])
-def new():
-   if request.method == 'POST':
-      if not request.form['name'] or not request.form['city'] or not request.form['addr']:
-         flash('Please enter all the fields', 'error')
-      else:
-         student = students(request.form['name'], request.form['city'],
-            request.form['addr'], request.form['pin'])
-         
-         db.session.add(student)
-         db.session.commit()
-         flash('Record was successfully added')
-         return redirect(url_for('show_all'))
-   return render_template('new.html')
+# create a new user and add it to the database
+session = Session()
+user = User(name='John', email='john@example.com')
+session.add(user)
+session.commit()
 
-if __name__ == '__main__':
-   db.create_all()
-   app.run(debug = True)
+# retrieve all users from the database
+users = session.query(User).all()
+print(users)
+
+# update a user's email address
+user = session.query(User).filter_by(name='John').first()
+user.email = 'john.new@example.com'
+session.commit()
+
+# delete a user from the database
+# user = session.query(User).filter_by(name='John').first()
+# session.delete(user)
+# session.commit()
+
+# close the session
+session.close()
