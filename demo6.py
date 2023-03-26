@@ -1,8 +1,8 @@
-#https://pythonbasics.org/flask-sqlalchemy/
-#https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
-#https://realpython.com/python-sqlite-sqlalchemy/#example-program
-#https://hackersandslackers.com/python-database-management-sqlalchemy/
-#https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
+# https://pythonbasics.org/flask-sqlalchemy/
+# https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
+# https://realpython.com/python-sqlite-sqlalchemy/#example-program
+# https://hackersandslackers.com/python-database-management-sqlalchemy/
+# https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples
 
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
@@ -17,12 +17,14 @@ Session = sessionmaker(bind=engine)
 # create a base class for declarative models
 Base = declarative_base()
 
+
 # define a model for the "users" table
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     email = Column(String(120), unique=True, nullable=False)
+
 
 # create the table in the database
 Base.metadata.create_all(engine)
